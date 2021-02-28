@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import HomePage from './pages/hompage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import CheckoutPage from './pages/checkout/checkout.component';
@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.action';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
+// import { shopCollectionsForPreview } from './redux/shop/shop.selector';
 
 class App extends React.Component {
 	unsubscribeFromAuth = null;
@@ -37,6 +38,14 @@ class App extends React.Component {
 			} else {
 				setCurrentUser(userAuth);
 			}
+
+			// addCollectionsAndDocuments(
+			// 	'collections',
+			// 	collectionArray.map(({ title, items }) => ({
+			// 		title,
+			// 		items
+			// 	}))
+			// );
 		});
 	}
 
@@ -71,6 +80,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser
+	// collectionArray: shopCollectionsForPreview
 });
 
 const mapDispatchToProps = (dispatch) => {

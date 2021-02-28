@@ -18,7 +18,6 @@ const Header = ({ currentUser, hidden }) => {
 					<Logo />
 				</Link>
 			</div>
-			{currentUser ? <span>Welcome {currentUser.displayName}</span> : null}
 			<div className={classes.options}>
 				<Link to="/shop" className={classes.option}>
 					SHOP

@@ -18,19 +18,19 @@ export const fetchCollectionFailure = (errorMessage) => ({
 	payload: errorMessage
 });
 
-export const fetchCollectionStartAsync = () => {
-	return (dispatch) => {
-		const collectionRef = firestore.collection('collections');
-		dispatch(fetchCollectionStart());
+// export const fetchCollectionStartAsync = () => {
+// 	return (dispatch) => {
+// 		const collectionRef = firestore.collection('collections');
+// 		dispatch(fetchCollectionStart());
 
-		collectionRef
-			.get()
-			.then((snapshot) => {
-				const collectionMap = convertCollectionsSnapshotToMap(snapshot);
-				dispatch(fetchCollectionSuccess(collectionMap));
-			})
-			.catch((error) => {
-				dispatch(fetchCollectionFailure(error.message));
-			});
-	};
-};
+// 		collectionRef
+// 			.get()
+// 			.then((snapshot) => {
+// 				const collectionMap = convertCollectionsSnapshotToMap(snapshot);
+// 				dispatch(fetchCollectionSuccess(collectionMap));
+// 			})
+// 			.catch((error) => {
+// 				dispatch(fetchCollectionFailure(error.message));
+// 			});
+// 	};
+// };

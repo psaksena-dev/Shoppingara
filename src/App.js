@@ -24,12 +24,6 @@ class App extends React.Component {
 				const userRef = await createUsrProfileDocuemnt(userAuth);
 
 				userRef.onSnapshot((snapshot) => {
-					// this.setState({
-					// 	currentUser: {
-					// 		id: snapshot.id,
-					// 		...snapshot.data()
-					// 	}
-					// });
 					setCurrentUser({
 						id: snapshot.id,
 						...snapshot.data()
@@ -38,14 +32,6 @@ class App extends React.Component {
 			} else {
 				setCurrentUser(userAuth);
 			}
-
-			// addCollectionsAndDocuments(
-			// 	'collections',
-			// 	collectionArray.map(({ title, items }) => ({
-			// 		title,
-			// 		items
-			// 	}))
-			// );
 		});
 	}
 

@@ -1,4 +1,4 @@
-import { takeEvery, call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import SHOP_ACTION_TYPES from './shop.actiontype';
 import {
 	firestore,

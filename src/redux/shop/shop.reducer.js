@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
-	console.log('start reducer');
 	switch (action.type) {
 		case SHOP_ACTION_TYPES.FETCH_COLLECTION_START:
 			return {

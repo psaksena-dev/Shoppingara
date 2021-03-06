@@ -3,7 +3,8 @@ import * as actions from './user.actiontype';
 import {
 	createUsrProfileDocuemnt,
 	auth,
-	googleProvider
+	googleProvider,
+	getCurrentUser
 } from './../../firebase/firebase.utils';
 
 import { signInSuccess, signInFail } from './user.action';
@@ -12,7 +13,6 @@ export function* getSnapshotFromUserAuth(user) {
 	try {
 		const userRef = yield call(createUsrProfileDocuemnt, user);
 		const snapshot = yield userRef.get();
-		console.log(snapshot);
 		yield put(
 			signInSuccess({
 				id: snapshot.id,
@@ -50,6 +50,24 @@ export function* onEmailSigninStart() {
 	yield takeLatest(actions.EMAIL_SIGNIN_START, signInWithEmail);
 }
 
+export function* isUserAuthenticated() {
+	try {
+		const userAuth = yield getCurrentUser();
+		if (!userAuth) return;
+		yield getSnapshotFromUserAuth(userAuth);
+	} catch (error) {
+		yield put(signInFail(error));
+	}
+}
+
+export function* onCheckUserSession() {
+	yield takeLatest(actions.CHECK_USER_SESSION, isUserAuthenticated);
+}
+
 export function* userSagas() {
-	yield all([call(onGoogleSigninStart), call(onEmailSigninStart)]);
+	yield all([
+		call(onGoogleSigninStart),
+		call(onEmailSigninStart),
+		call(onCheckUserSession)
+	]);
 }

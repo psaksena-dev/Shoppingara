@@ -2,6 +2,7 @@ const express = require('express');
 // const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const generatePassword = require('password-generator');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -44,4 +45,18 @@ app.post('/payment', (req, res) => {
 			});
 		}
 	});
+});
+
+app.get('/api/passwords', (req, res) => {
+	const count = 5;
+
+	// Generate some passwords
+	const passwords = Array.from(Array(count).keys()).map((i) =>
+		generatePassword(12, false)
+	);
+
+	// Return them as json
+	res.json(passwords);
+
+	console.log(`Sent ${count} passwords`);
 });

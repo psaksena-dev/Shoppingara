@@ -20,7 +20,6 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
 				</Link>
 			</div>
 			<div className={classes.options}>
-				{currentUser ? <span>{currentUser.displayName}</span> : null}
 				<Link to="/shop" className={classes.option}>
 					SHOP
 				</Link>
